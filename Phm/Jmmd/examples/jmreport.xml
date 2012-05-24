@@ -41,7 +41,7 @@
 </httpSample>
 <httpSample t="133" it="0" lt="133" ts="1337783054545" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14380" sc="1" ec="0">
   <java.net.URL>http://ocm.local/78023.html</java.net.URL>
-</httpSample>
+</httpSample> 
 <httpSample t="75" it="0" lt="74" ts="1337783054678" s="false" lb="sendReq" rc="404" rm="Not Found" dt="text" by="810" sc="1" ec="1">
   <java.net.URL>http://ocm.local/gemeiner-fehler.html</java.net.URL>
 </httpSample>
