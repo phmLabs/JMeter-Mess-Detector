@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testResults version="1.2">
+<httpSample t="628" it="0" lt="627" ts="1337783052193" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14382" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="143" it="0" lt="143" ts="1337783052825" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="13982" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/79630.html</java.net.URL>
+</httpSample>
+<httpSample t="142" it="0" lt="142" ts="1337783052969" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14380" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="134" it="0" lt="134" ts="1337783053111" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14381" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="136" it="0" lt="136" ts="1337783053246" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="13984" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/79630.html</java.net.URL>
+</httpSample>
+<httpSample t="202" it="0" lt="202" ts="1337783053383" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14379" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="144" it="0" lt="144" ts="1337783053586" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14380" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="136" it="0" lt="136" ts="1337783053730" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="13985" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/79630.html</java.net.URL>
+</httpSample>
+<httpSample t="138" it="0" lt="138" ts="1337783053867" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14380" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="133" it="0" lt="132" ts="1337783054006" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14380" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="140" it="0" lt="140" ts="1337783054139" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="13986" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/79630.html</java.net.URL>
+</httpSample>
+<httpSample t="129" it="0" lt="129" ts="1337783054280" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14380" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="134" it="0" lt="134" ts="1337783054410" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="13984" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/79630.html</java.net.URL>
+</httpSample>
+<httpSample t="133" it="0" lt="133" ts="1337783054545" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14380" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="75" it="0" lt="74" ts="1337783054678" s="false" lb="sendReq" rc="404" rm="Not Found" dt="text" by="810" sc="1" ec="1">
+  <java.net.URL>http://ocm.local/gemeiner-fehler.html</java.net.URL>
+</httpSample>
+<httpSample t="137" it="0" lt="136" ts="1337783054754" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14383" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="139" it="0" lt="139" ts="1337783054891" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14382" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="133" it="0" lt="133" ts="1337783055031" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14383" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="135" it="0" lt="135" ts="1337783055165" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="13984" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/79630.html</java.net.URL>
+</httpSample>
+<httpSample t="138" it="0" lt="138" ts="1337783055301" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14380" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="144" it="0" lt="144" ts="1337783055440" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14384" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="183" it="0" lt="183" ts="1337783055585" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="13983" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/79630.html</java.net.URL>
+</httpSample>
+<httpSample t="151" it="0" lt="151" ts="1337783055769" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14382" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="134" it="0" lt="134" ts="1337783055921" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14380" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="182" it="0" lt="182" ts="1337783056056" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="13985" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/79630.html</java.net.URL>
+</httpSample>
+<httpSample t="131" it="0" lt="131" ts="1337783056239" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14380" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="135" it="0" lt="135" ts="1337783056371" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14379" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="138" it="0" lt="137" ts="1337783056506" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="13985" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/79630.html</java.net.URL>
+</httpSample>
+<httpSample t="134" it="0" lt="134" ts="1337783056644" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="14379" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/78023.html</java.net.URL>
+</httpSample>
+<httpSample t="139" it="0" lt="139" ts="1337783056779" s="true" lb="sendReq" rc="200" rm="OK" dt="text" by="13985" sc="1" ec="0">
+  <java.net.URL>http://ocm.local/79630.html</java.net.URL>
+</httpSample>
+
+</testResults>
