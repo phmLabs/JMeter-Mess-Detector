@@ -1,5 +1,9 @@
 <?php
 
+use Symfony\Component\Console\Application;
+
+include_once __DIR__."/autoload.php";
+
 $jmReportingFile = $_SERVER['argv'][1];
 $jmmdOutputFile = $_SERVER['argv'][2];
 
