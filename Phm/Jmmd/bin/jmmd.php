@@ -8,19 +8,18 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Phm\Jmmd\Jmmd;
 use Phm\Jmmd\JMeter\JMeterReport;
 use Phm\Jmmd\Rule\ElapsedTimeRule;
+use Phm\Jmmd\Report\TextReport;
 
 include_once __DIR__ . "/autoload.php";
 
 $console = new Application();
 $console->register("analyze")
-    ->setDefinition(
-        array(new InputArgument('inputFileName', InputArgument::REQUIRED, 'JMeter report file'),
-            new InputArgument('outputFileName', InputArgument::REQUIRED, 'xUnit output file')))->setDescription("Analyzing a JMeter log file.")
-    ->setHelp("Analyzing a JMeter log file.")
-    ->setCode(function (InputInterface $input, OutputInterface $output)
-    {
-      runAnalyzer($input, $output);
-    });
+        ->setDefinition(array(new InputArgument('inputFileName', InputArgument::REQUIRED, 'JMeter report file'),
+                              new InputArgument('outputFileName', InputArgument::REQUIRED, 'xUnit output file')))->setDescription("Analyzing a JMeter log file.")
+        ->setHelp("Analyzing a JMeter log file.")
+        ->setCode(function (InputInterface $input, OutputInterface $output) {
+                    runAnalyzer($input, $output);
+                  });
 
 $console->run();
 
@@ -35,17 +34,9 @@ function runAnalyzer(InputInterface $input, OutputInterface $output)
 
   $violations = $jmmd->detect($JMeterReport);
 
-  $violationMessage = "";
+  $textReport = new TextReport();
 
-  foreach ($violations as $url => $violationsForUrl)
-  {
-    foreach ($violationsForUrl as $violation)
-    {
-      $violationMessage .= $url . " - " . $violation->getMessage() . "\n";
-    }
-  }
-
-  file_put_contents($input->getArgument('outputFileName'), $violationMessage);
+  file_put_contents($input->getArgument('outputFileName'), $textReport->createReport($violations));
 
   if (count($violations) > 0)
   {
