@@ -17,7 +17,9 @@ $console = new Application();
 $console->register("analyze")
     ->setDefinition(
         array(new InputArgument('inputFileName', InputArgument::REQUIRED, 'JMeter report file'),
-            new InputArgument('outputFileName', InputArgument::REQUIRED, 'xUnit output file')))->setDescription("Analyzing a JMeter log file.")
+              new InputArgument('outputFileName', InputArgument::REQUIRED, 'xUnit output file'),
+        		  new InputArgument('maxElapsedTime', InputArgument::OPTIONAL, 'Max elapsed time', '200'),
+        		))->setDescription("Analyzing a JMeter log file.")
     ->setHelp("Analyzing a JMeter log file.")
     ->setCode(function (InputInterface $input, OutputInterface $output)
     {
@@ -33,7 +35,7 @@ function runAnalyzer(InputInterface $input, OutputInterface $output)
   $JMeterReport = new JMeterReport($input->getArgument('inputFileName'));
 
   $jmmd = new Jmmd();
-  $jmmd->addRule(new ElapsedTimeRule(200));
+  $jmmd->addRule(new ElapsedTimeRule($input->getArgument('maxElapsedTime')));
 
   $violations = $jmmd->detect($JMeterReport);
 
@@ -49,5 +51,6 @@ function runAnalyzer(InputInterface $input, OutputInterface $output)
   else
   {
   	$output->writeln("<info>No violations found.</info>");
+  	exit(0);
   }
 }

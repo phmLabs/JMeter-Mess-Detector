@@ -15,7 +15,6 @@ class TextReport
         $resultMessage .= $url . " - " . $result->getMessage() . "\n";
       }
     }
-
     return $resultMessage;
   }
 }
