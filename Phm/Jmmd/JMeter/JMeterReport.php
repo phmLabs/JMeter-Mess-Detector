@@ -23,6 +23,7 @@ class JMeterReport
     {
       $httpSampleElement = new HttpSampleElement();
       $httpSampleElement->setElapsedTime($httpSampleDomElement->getAttribute('t'));
+      $httpSampleElement->setReturnCode(((int)$httpSampleDomElement->getAttribute('rc')));
       $httpSampleElement->setUrl((string)$httpSampleDomElement->getElementsByTagName('java.net.URL')->item(0)->nodeValue);
 
       $elements[] = $httpSampleElement;

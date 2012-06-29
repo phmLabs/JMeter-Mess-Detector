@@ -1,5 +1,11 @@
 <?php
 
+use Symfony\Component\Console\Input\InputOption;
+
+use Phm\Jmmd\Report\CsvFormat;
+
+use Phm\Jmmd\Rule\ErrorStatusCode;
+
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
@@ -18,7 +24,7 @@ $console->register("analyze")
     ->setDefinition(
         array(new InputArgument('inputFileName', InputArgument::REQUIRED, 'JMeter report file'),
               new InputArgument('outputFileName', InputArgument::REQUIRED, 'xUnit output file'),
-        		  new InputArgument('maxElapsedTime', InputArgument::OPTIONAL, 'Max elapsed time', '200'),
+        		  new InputOption('maxElapsedTime', null, InputArgument::OPTIONAL, 'Max elapsed time', '200'),
         		))->setDescription("Analyzing a JMeter log file.")
     ->setHelp("Analyzing a JMeter log file.")
     ->setCode(function (InputInterface $input, OutputInterface $output)
@@ -35,11 +41,13 @@ function runAnalyzer(InputInterface $input, OutputInterface $output)
   $JMeterReport = new JMeterReport($input->getArgument('inputFileName'));
 
   $jmmd = new Jmmd();
-  $jmmd->addRule(new ElapsedTimeRule($input->getArgument('maxElapsedTime')));
+
+  $jmmd->addRule(new ElapsedTimeRule($input->getOption('maxElapsedTime')));
+  $jmmd->addRule(new ErrorStatusCode());
 
   $violations = $jmmd->detect($JMeterReport);
 
-  $textReport = new TextReport();
+  $textReport = new CsvFormat();
 
   file_put_contents($input->getArgument('outputFileName'), $textReport->createReport($violations));
 
