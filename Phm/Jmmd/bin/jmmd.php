@@ -1,5 +1,11 @@
 <?php
 
+use Phm\Jmmd\Rule\NotFoundStatusCode;
+
+use Phm\Jmmd\Filter\UrlWhiteListFilter;
+
+use Phm\Jmmd\Filter\DuplicateFilter;
+
 use Symfony\Component\Console\Input\InputOption;
 
 use Phm\Jmmd\Report\CsvFormat;
@@ -44,6 +50,14 @@ function runAnalyzer(InputInterface $input, OutputInterface $output)
 
   $jmmd->addRule(new ElapsedTimeRule($input->getOption('maxElapsedTime')));
   $jmmd->addRule(new ErrorStatusCode());
+  $jmmd->addRule(new NotFoundStatusCode());
+
+  $jmmd->addFilter(new DuplicateFilter());
+  $whiteListFilter = new UrlWhiteListFilter();
+  $whiteListFilter->addRegEx("#\/\d+\/[^\/]+\.html(\?.+)?$#");
+  $whiteListFilter->addRegEx("#_\d+\.html(\?.+)?$#");
+  $whiteListFilter->addRegEx("#^(\/syndication\/mobile\_feed\.php|\/video\/bc_feed.php|\/rss\/(gala_rss|beauty)\.html)(\?.+)?$#" );
+  $jmmd->addFilter($whiteListFilter);
 
   $violations = $jmmd->detect($JMeterReport);
 

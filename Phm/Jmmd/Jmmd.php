@@ -8,6 +8,8 @@ class Jmmd
 
     private $rules = array();
 
+    private $filters = array();
+
     public function detect (JMeterReport $report, $filterDuplicates = true)
     {
         $violations = array();
@@ -15,11 +17,7 @@ class Jmmd
         $httpSampleElements = $report->getHttpSampleElements();
         foreach ($httpSampleElements as $httpSampleElement) {
             foreach ($this->rules as $rule) {
-                if (! $filterDuplicates ||
-                         ! array_key_exists($httpSampleElement->getUrl(),
-                                $violations) || ! array_key_exists(
-                                get_class($rule),
-                                $violations[$httpSampleElement->getUrl()])) {
+                if (!$this->isFiltered($httpSampleElement->getUrl(), $rule)) {
                     $result = $rule->detect($httpSampleElement);
                     if (! $result->isSuccessful()) {
                         $violations[$httpSampleElement->getUrl()][get_class(
@@ -30,6 +28,21 @@ class Jmmd
         }
 
         return $violations;
+    }
+
+    private function isFiltered ($url, $rule)
+    {
+        foreach ($this->filters as $filter) {
+            if ($filter->isFiltered($url, $rule)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function addFilter ($filter)
+    {
+        $this->filters[] = $filter;
     }
 
     public function addRule (Rule $rule)

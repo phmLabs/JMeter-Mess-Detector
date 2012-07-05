@@ -6,7 +6,7 @@ class CsvFormat
 
     public function createReport (array $results)
     {
-        $resultMessage = "";
+        $resultMessage = "url;rule;message\n";
 
         foreach ($results as $url => $rulesWithViolations) {
             foreach ($rulesWithViolations as $rule => $violations) {
