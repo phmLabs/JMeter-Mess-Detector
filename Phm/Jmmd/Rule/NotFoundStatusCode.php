@@ -6,8 +6,6 @@ use Phm\Jmmd\Result\Result;
 class NotFoundStatusCode implements Rule
 {
 
-    private $errorUrls = array();
-
     public function detect (HttpSampleElement $httpSampleElement)
     {
         if ($httpSampleElement->getReturnCode() == 404) {

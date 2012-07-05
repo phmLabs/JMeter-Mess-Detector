@@ -4,7 +4,6 @@ use Phm\Jmmd\Rule\Rule;
 
 class UrlWhiteListFilter
 {
-
     private $regularExpressions = array();
 
     public function addRegEx ($regex)
