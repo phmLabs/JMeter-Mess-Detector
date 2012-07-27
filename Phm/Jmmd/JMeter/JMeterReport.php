@@ -4,31 +4,47 @@ namespace Phm\Jmmd\JMeter;
 
 class JMeterReport
 {
-  private $domDocument;
+  private $httpSampleElements;
+  
 
-  public function __construct($filename)
+  public static function createByJtlFile( $filename )
   {
-    $this->domDocument = new \DOMDocument();
-    $this->domDocument->load($filename);
+  	$jMeterReport = new self;
+  	
+  	$dom = new \DOMDocument();
+  	$dom->load($filename);
+  	
+  	$jMeterReport->addHttpSampleElementsByDom($dom);
+  	
+  	return $jMeterReport;
   }
+  
+  public function addHttpSampleElement($httpSampleElement)
+  {
+  	$this->httpSampleElements[] = $httpSampleElement;
+  }
+  
+  private function addHttpSampleElementsByDom($dom)
+  {
+  	$xpath = new \DOMXPath($dom);
+  	$httpSampleNodeList = $xpath->query("/testResults/httpSample");
+  	
+  	$elements = array();
+  	
+  	foreach ($httpSampleNodeList as $httpSampleDomElement)
+  	{
+  		$httpSampleElement = new HttpSampleElement();
+  		$httpSampleElement->setElapsedTime($httpSampleDomElement->getAttribute('t'));
+  		$httpSampleElement->setReturnCode(((int)$httpSampleDomElement->getAttribute('rc')));
+  		$httpSampleElement->setUrl((string)$httpSampleDomElement->getElementsByTagName('java.net.URL')->item(0)->nodeValue);
+  	
+  		$this->addHttpSampleElement($httpSampleElement);
+  	}
+  }
+  
 
   public function getHttpSampleElements()
   {
-    $xpath = new \DOMXPath($this->domDocument);
-    $httpSampleNodeList = $xpath->query("/testResults/httpSample");
-
-    $elements = array();
-
-    foreach ($httpSampleNodeList as $httpSampleDomElement)
-    {
-      $httpSampleElement = new HttpSampleElement();
-      $httpSampleElement->setElapsedTime($httpSampleDomElement->getAttribute('t'));
-      $httpSampleElement->setReturnCode(((int)$httpSampleDomElement->getAttribute('rc')));
-      $httpSampleElement->setUrl((string)$httpSampleDomElement->getElementsByTagName('java.net.URL')->item(0)->nodeValue);
-
-      $elements[] = $httpSampleElement;
-    }
-
-    return $elements;
+	return $this->httpSampleElements;
   }
 }
