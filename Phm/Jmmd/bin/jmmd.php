@@ -1,5 +1,7 @@
 <?php
 
+use Phm\Jmmd\Rule\ForbiddenStatusCode;
+
 use Phm\Jmmd\Rule\NotFoundStatusCode;
 
 use Phm\Jmmd\Filter\UrlWhiteListFilter;
@@ -42,12 +44,15 @@ $console->run();
 
 function runAnalyzer(InputInterface $input, OutputInterface $output)
 {
+  $output->writeln('');
   $output->writeln("Analyzing " . $input->getArgument('inputFileName'));
+  $output->writeln('');
 
   $JMeterReport = new JMeterReport($input->getArgument('inputFileName'));
 
   $jmmd = new Jmmd();
 
+  $jmmd->addRule(new ForbiddenStatusCode());
   $jmmd->addRule(new ElapsedTimeRule($input->getOption('maxElapsedTime')));
   $jmmd->addRule(new ErrorStatusCode());
   $jmmd->addRule(new NotFoundStatusCode());
@@ -67,12 +72,14 @@ function runAnalyzer(InputInterface $input, OutputInterface $output)
 
   if (count($violations) > 0)
   {
-  	$output->writeln("<error>".count($violations)." violations found.</error>");
+  	$output->writeln("  <error> ".count($violations)." violations found. </error>");
+  	$output->writeln('');
     exit(1);
   }
   else
   {
-  	$output->writeln("<info>No violations found.</info>");
+  	$output->writeln("  <info> No violations found. </info>");
+  	$output->writeln('');
   	exit(0);
   }
 }

@@ -11,7 +11,8 @@ class CsvFormat
         foreach ($results as $url => $rulesWithViolations) {
             foreach ($rulesWithViolations as $rule => $violations) {
                 foreach ($violations as $violation) {
-                    $resultMessage .= '"'.$url . '";' . $rule . ";" . $violation->getMessage() . "\n";
+                    $resultMessage .= '"' . $url . '";' . $rule . ";" .
+                             $violation->getMessage() . "\n";
                 }
             }
         }
