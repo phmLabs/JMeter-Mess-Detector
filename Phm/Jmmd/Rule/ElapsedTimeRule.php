@@ -9,9 +9,9 @@ class ElapsedTimeRule implements Rule
 {
   private $maxValue;
 
-  public function __construct($maxValue = 200)
+  public function __construct(array $parameters)
   {
-    $this->maxValue = $maxValue;
+    $this->maxValue = $parameters["maxValue"];
   }
 
   public function detect(HttpSampleElement $httpSampleElement)

@@ -1,5 +1,22 @@
 Rules:
- ElapsedTime:
-  class: Phm\Jmmd\Rule\ElapsedTimeRule
-  parameters: 
-   maxTime: 200
+  ElapsedTime:
+    class: Phm\Jmmd\Rule\ElapsedTimeRule
+    parameters:
+      maxValue: 60000
+
+  ForbiddenStatusCode:
+    class: Phm\Jmmd\Rule\ForbiddenStatusCode
+
+  ErrorStatusCode:
+    class: Phm\Jmmd\Rule\ErrorStatusCode
+
+  NotFoundStatusCode:
+    class: Phm\Jmmd\Rule\NotFoundStatusCode
+
+Filters:
+
+  UrlWhiteList:
+    class: Phm\Jmmd\Filter\UrlWhiteListFilter
+    parameters:
+      regex:
+        - "#(.*)#"

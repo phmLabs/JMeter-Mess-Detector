@@ -7,6 +7,14 @@ class UrlBlackListFilter
 {
     private $regularExpressions = array();
 
+    public function __construct(array $parameters)
+    {
+        $regexes = $parameters["regex"];
+        foreach($regexes as $regex) {
+            $this->addRegEx($regex);
+        }
+    }
+
     public function addRegEx ($regex)
     {
         $this->regularExpressions[] = $regex;

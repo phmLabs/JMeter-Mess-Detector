@@ -6,7 +6,15 @@ class UrlWhiteListFilter
 {
     private $regularExpressions = array();
 
-    public function addRegEx ($regex)
+    public function __construct(array $parameters)
+    {
+        $regexes = $parameters["regex"];
+        foreach($regexes as $regex) {
+            $this->addRegEx($regex);
+        }
+    }
+
+    private function addRegEx ($regex)
     {
         $this->regularExpressions[] = $regex;
     }

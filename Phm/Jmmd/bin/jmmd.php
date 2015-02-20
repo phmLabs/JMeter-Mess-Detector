@@ -25,8 +25,7 @@ use Symfony\Component\Console\Formatter\OutputFormatter;
 
 use Phm\Jmmd\Jmmd;
 use Phm\Jmmd\JMeter\JMeterReport;
-use Phm\Jmmd\Rule\ElapsedTimeRule;
-use Phm\Jmmd\Report\TextReport;
+use Symfony\Component\Yaml\Yaml;
 
 include_once __DIR__ . "/autoload.php";
 
@@ -34,46 +33,29 @@ $console = new Application();
 $console->register("analyze")
     ->setDefinition(
         array(
-                new InputArgument('inputFileName', InputArgument::REQUIRED, 'JMeter report file'),
-                new InputArgument('outputFileName', InputArgument::REQUIRED, 'xUnit output file'),
-                new InputOption('maxElapsedTime', null, InputArgument::OPTIONAL, 'Max elapsed time', '200')))
+            new InputArgument('configFileName', InputArgument::REQUIRED, 'jmmd config file'),
+            new InputArgument('inputFileName', InputArgument::REQUIRED, 'JMeter report file'),
+            new InputArgument('outputFileName', InputArgument::REQUIRED, 'xUnit output file')))
     ->setDescription("Analyzing a JMeter log file.")
     ->setHelp("Analyzing a JMeter log file.")
-    ->setCode(function  (InputInterface $input, OutputInterface $output)
-{
-    runAnalyzer($input, $output);
-});
+    ->setCode(function (InputInterface $input, OutputInterface $output) {
+        runAnalyzer($input, $output);
+    });
 
 $console->run();
 
-function runAnalyzer (InputInterface $input, OutputInterface $output)
+function runAnalyzer(InputInterface $input, OutputInterface $output)
 {
     $output->writeln('');
     $output->writeln("Analyzing " . $input->getArgument('inputFileName'));
     $output->writeln('');
 
-    $JMeterReport = JMeterReport::createByJtlFile($input->getArgument('inputFileName'));
-
     $jmmd = new Jmmd();
+    $JMeterReport = JMeterReport::createByJtlFile($input->getArgument('inputFileName'));
+    $config = new \Phm\Jmmd\Config\Configuration(Yaml::parse(file_get_contents($input->getArgument('configFileName'))));
 
-    $jmmd->addRule(new ForbiddenStatusCode());
-    $jmmd->addRule(new ElapsedTimeRule($input->getOption('maxElapsedTime')));
-    $jmmd->addRule(new ErrorStatusCode());
-    $jmmd->addRule(new NotFoundStatusCode());
-
-    $jmmd->addFilter(new DuplicateFilter());
-
-    $whiteListFilter = new UrlWhiteListFilter();
-    $whiteListFilter->addRegEx("#\/\d+\/[^\/]+\.html(\?.+)?$#");
-    $whiteListFilter->addRegEx("#http://image.gala.de/$#");
-    $whiteListFilter->addRegEx("#_\d+\.html(\?.+)?$#");
-    $whiteListFilter->addRegEx("#^(\/syndication\/mobile\_feed\.php|\/video\/bc_feed.php|\/rss\/(gala_rss|beauty)\.html)(\?.+)?$#");
-    $jmmd->addFilter($whiteListFilter);
-
-    $blackListFilter = new UrlBlackListFilter();
-    $blackListFilter->addRegEx('#archiveid#');
-    $blackListFilter->addRegEx('#Uebersicht.html#');
-    $jmmd->addFilter($blackListFilter);
+    $jmmd->addRules($config->getRules());
+    $jmmd->addFilters($config->getFilters());
 
     $normalizer = new Normalizer();
     $normalizedJMeterReport = $normalizer->getNormalizedReport($JMeterReport);
