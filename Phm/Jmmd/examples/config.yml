@@ -1,0 +1,5 @@
+Rules:
+ ElapsedTime:
+  class: Phm\Jmmd\Rule\ElapsedTimeRule
+  parameters: 
+   maxTime: 200

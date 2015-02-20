@@ -1,0 +1,15 @@
+{
+    "name": "jMeter-Mass-Detection",
+    "license": "MIT",
+    "type": "project",
+    "description": "jMeter-Mass-Detection",
+    "autoload": {
+        "psr-0": { "": "src/", "SymfonyStandard": "app/" }
+    },
+
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/console": "2.7.*@dev",
+        "symfony/yaml": "2.7.*@dev"
+    }
+}
