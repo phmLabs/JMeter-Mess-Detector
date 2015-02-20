@@ -13,14 +13,15 @@ use Symfony\Component\Yaml\Yaml;
 class Configuration
 {
 
-    private $rules;
-    private $filters;
+    private $rules = array();
+    private $filters = array();
 
     public function __construct(array $configFile)
     {
         $rules = $configFile["Rules"];
 
         $filters = $configFile["Filters"];
+        if( is_null($filters) ) $filters = array();
 
         foreach ($rules as $rule) {
             $ruleClassName = $rule["class"];

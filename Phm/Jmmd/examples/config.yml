@@ -12,11 +12,3 @@ Rules:
 
   NotFoundStatusCode:
     class: Phm\Jmmd\Rule\NotFoundStatusCode
-
-Filters:
-
-  UrlWhiteList:
-    class: Phm\Jmmd\Filter\UrlWhiteListFilter
-    parameters:
-      regex:
-        - "#(.*)#"
