@@ -2,7 +2,7 @@ Rules:
   ElapsedTime:
     class: Phm\Jmmd\Rule\ElapsedTimeRule
     parameters:
-      maxValue: 60000
+      maxValue: 30000
 
   ForbiddenStatusCode:
     class: Phm\Jmmd\Rule\ForbiddenStatusCode

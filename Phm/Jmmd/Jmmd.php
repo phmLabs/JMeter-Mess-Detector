@@ -16,13 +16,13 @@ class Jmmd
         $violations = array();
 
         $httpSampleElements = $report->getHttpSampleElements();
+
         foreach ($httpSampleElements as $httpSampleElement) {
             foreach ($this->rules as $rule) {
-                if (!$this->isFiltered($httpSampleElement->getUrl(), $rule)) {
+                if (!$this->isFiltered($httpSampleElement, $rule)) {
                     $result = $rule->detect($httpSampleElement);
                     if (!$result->isSuccessful()) {
-                        $violations[$httpSampleElement->getUrl()][get_class(
-                            $rule)][] = $result;
+                        $violations[$httpSampleElement->getUrl()][get_class($rule)][] = $result;
                     }
                 }
             }

@@ -21,10 +21,13 @@ class Configuration
         $rules = $configFile["Rules"];
 
         $filters = $configFile["Filters"];
+
         if( is_null($filters) ) $filters = array();
+        if( is_null($rules) ) $rules = array();
 
         foreach ($rules as $rule) {
             $ruleClassName = $rule["class"];
+            var_dump( $ruleClassName );
             $this->rules[] = new $ruleClassName($rule["parameters"]);
         }
 

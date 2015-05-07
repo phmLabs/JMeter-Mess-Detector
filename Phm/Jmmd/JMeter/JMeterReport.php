@@ -33,6 +33,7 @@ class JMeterReport
         foreach ($httpSampleNodeList as $httpSampleDomElement) {
             $httpSampleElement = new HttpSampleElement();
             $httpSampleElement->setElapsedTime($httpSampleDomElement->getAttribute('t'));
+            $httpSampleElement->setTimeStamp($httpSampleDomElement->getAttribute('ts'));
             $httpSampleElement->setReturnCode(((int) $httpSampleDomElement->getAttribute('rc')));
             $httpSampleElement->setUrl((string) $httpSampleDomElement->getElementsByTagName('java.net.URL')
                 ->item(0)->nodeValue);

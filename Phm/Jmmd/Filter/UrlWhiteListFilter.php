@@ -1,5 +1,6 @@
 <?php
 namespace Phm\Jmmd\Filter;
+use Phm\Jmmd\JMeter\HttpSampleElement;
 use Phm\Jmmd\Rule\Rule;
 
 class UrlWhiteListFilter
@@ -19,10 +20,10 @@ class UrlWhiteListFilter
         $this->regularExpressions[] = $regex;
     }
 
-    public function isFiltered ($url, Rule $rule)
+    public function isFiltered (HttpSampleElement $httpSampleElement, Rule $rule)
     {
         foreach ($this->regularExpressions as $regEx) {
-            if (preg_match($regEx, $url) > 0) {
+            if (preg_match($regEx, $httpSampleElement->getUrl()) > 0) {
                 return false;
             }
         }

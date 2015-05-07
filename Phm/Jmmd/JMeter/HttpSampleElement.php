@@ -10,33 +10,46 @@ class HttpSampleElement
 
     private $returnCode;
 
-    public function getElapsedTime ()
+    private $timestamp;
+
+    public function getElapsedTime()
     {
         return $this->elapsedTime;
     }
 
-    public function getUrl ()
+    public function getUrl()
     {
         return $this->url;
     }
 
-    public function setElapsedTime ($elapsedTime)
+    public function setElapsedTime($elapsedTime)
     {
         $this->elapsedTime = $elapsedTime;
     }
 
-    public function setUrl ($url)
+    public function setUrl($url)
     {
         $this->url = $url;
     }
 
-    public function setReturnCode ($returnCode)
+    public function setReturnCode($returnCode)
     {
         $this->returnCode = $returnCode;
     }
 
-    public function getReturnCode ()
+    public function getReturnCode()
     {
         return $this->returnCode;
+    }
+
+    public function getTimeStamp()
+    {
+        return $this->timestamp;
+    }
+
+    public function setTimeStamp($timestamp)
+    {
+        $this->timestamp = $timestamp;
+        return $this;
     }
 }
