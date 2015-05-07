@@ -63,9 +63,8 @@ function runAnalyzer(InputInterface $input, OutputInterface $output)
 
     $violations = $jmmd->detect($normalizedJMeterReport);
 
-    $textReport = new CsvFormat();
-
-    file_put_contents($input->getArgument('outputFileName'), $textReport->createReport($violations));
+    $reporter = $config->getReporter();
+    $reporter->createReport($violations);
 
     if (count($violations) > 0) {
         $violationCount = 0;

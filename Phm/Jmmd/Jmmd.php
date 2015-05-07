@@ -22,6 +22,7 @@ class Jmmd
                 if (!$this->isFiltered($httpSampleElement, $rule)) {
                     $result = $rule->detect($httpSampleElement);
                     if (!$result->isSuccessful()) {
+                        $result->setHttpSampleElement($httpSampleElement);
                         $violations[$httpSampleElement->getUrl()][get_class($rule)][] = $result;
                     }
                 }

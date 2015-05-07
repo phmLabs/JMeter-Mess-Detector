@@ -22,12 +22,11 @@ class Configuration
 
         $filters = $configFile["Filters"];
 
-        if( is_null($filters) ) $filters = array();
-        if( is_null($rules) ) $rules = array();
+        if (is_null($filters)) $filters = array();
+        if (is_null($rules)) $rules = array();
 
         foreach ($rules as $rule) {
             $ruleClassName = $rule["class"];
-            var_dump( $ruleClassName );
             $this->rules[] = new $ruleClassName($rule["parameters"]);
         }
 
@@ -35,6 +34,15 @@ class Configuration
             $filterClassName = $filter["class"];
             $this->filters[] = new $filterClassName($filter["parameters"]);
         }
+
+        $reporterName = $configFile["Reporter"]["class"];
+
+        $parameters = $configFile["Reporter"]["Parameters"];
+        if (is_null($parameters)) {
+            $parameters = array();
+        }
+
+        $this->reporter = new $reporterName($parameters);
     }
 
     public function getFilters()
@@ -45,5 +53,10 @@ class Configuration
     public function getRules()
     {
         return $this->rules;
+    }
+
+    public function getReporter()
+    {
+        return $this->reporter;
     }
 }

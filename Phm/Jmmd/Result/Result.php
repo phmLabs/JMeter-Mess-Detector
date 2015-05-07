@@ -2,25 +2,39 @@
 
 namespace Phm\Jmmd\Result;
 
+use Phm\Jmmd\JMeter\HttpSampleElement;
+
 class Result
 {
-  private $isSuccessful;
+    private $isSuccessful;
 
-  private $message;
+    private $message;
 
-  public function __construct($isSuccessful, $message = "")
-  {
-    $this->isSuccessful = $isSuccessful;
-    $this->message = $message;
-  }
+    private $httpSampleElement;
 
-  public function isSuccessful()
-  {
-    return $this->isSuccessful;
-  }
+    public function __construct($isSuccessful, $message = "")
+    {
+        $this->isSuccessful = $isSuccessful;
+        $this->message = $message;
+    }
 
-  public function getMessage()
-  {
-    return $this->message;
-  }
+    public function isSuccessful()
+    {
+        return $this->isSuccessful;
+    }
+
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    public function setHttpSampleElement(HttpSampleElement $httpSampleElement)
+    {
+        $this->httpSampleElement = $httpSampleElement;
+    }
+
+    public function getHttpSampleElement()
+    {
+        return $this->httpSampleElement;
+    }
 }

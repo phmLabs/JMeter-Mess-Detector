@@ -4,6 +4,11 @@ namespace Phm\Jmmd\Report;
 class CsvFormat
 {
 
+    public function __construct(array $parameters = array())
+    {
+        $this->output = $parameters["output"];
+    }
+
     public function createReport (array $results)
     {
         $resultMessage = "url;rule;message\n";
@@ -16,6 +21,7 @@ class CsvFormat
                 }
             }
         }
-        return $resultMessage;
+
+        return file_put_contents($this->output, $resultMessage);
     }
 }
